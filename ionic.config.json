@@ -1,0 +1,7 @@
+{
+  "name": "gestion-conge-mobile",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue"
+}
