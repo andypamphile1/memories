@@ -18,5 +18,13 @@ export default {
     IonList,
     MemoryListItem,
   },
+  methods: {
+    setMemoryToDelete(memoryId) {
+      this.$store.dispatch('setMemoryToDelete', memoryId);
+    },
+    deleteMemory(memoryId) {
+      this.$store.dispatch('deleteMemory', memoryId);
+    },
+  },
 };
 </script>

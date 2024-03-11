@@ -6,19 +6,26 @@
     <ion-label>
       {{ memory.title }}
     </ion-label>
+    <ion-button @click="deleteMemory(memory.id)">Delete</ion-button>
   </ion-item>
 </template>
 
 <script>
-import { IonItem, IonThumbnail, IonImg, IonLabel } from "@ionic/vue";
+import { IonItem, IonThumbnail, IonImg, IonLabel, IonButton } from "@ionic/vue";
 
 export default {
-  props: ["memory"],
+  props: ["memory"], 
   components: {
     IonItem,
     IonThumbnail,
     IonImg,
     IonLabel,
+    IonButton
+  },
+  methods: {
+    deleteMemory(memoryId) {
+      this.$store.dispatch('deleteMemory', memoryId);
+    },
   },
 };
 </script>

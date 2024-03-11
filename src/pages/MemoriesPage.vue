@@ -4,8 +4,8 @@
       <ion-button router-link="/memories/add">
         <ion-icon slot="icon-only" :icon="add"></ion-icon>
       </ion-button>
-    </template>
-    <memories-list :memories="memories"></memories-list>
+    </template> 
+    <memories-list :memories="memories" ></memories-list>
   </base-layout>
 </template>
 
@@ -22,12 +22,14 @@ export default {
     IonIcon
   },
   data() {
-    return { add };
+    return { add }
   },
   computed: {
     memories() {
-      return this.$store.getters.memories;
+      const keyword = this.$store.state.searchKeyword.toLowerCase();
+      return this.$store.getters.memories.filter((item) => item.title.toLowerCase().includes(keyword));
     },
   },
+
 };
 </script>

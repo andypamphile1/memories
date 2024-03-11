@@ -12,6 +12,9 @@
           <slot name="actions-end"></slot>
         </ion-buttons>
       </ion-toolbar>
+      <ion-toolbar>
+        <ion-searchbar v-model="$store.state.searchKeyword" @ionChange="onSearchChange"></ion-searchbar>
+      </ion-toolbar>
     </ion-header>
     <ion-content>
       <slot />
@@ -28,6 +31,7 @@ import {
   IonContent,
   IonBackButton,
   IonButtons,
+  IonSearchbar
 } from "@ionic/vue";
 
 export default {
@@ -40,6 +44,12 @@ export default {
     IonContent,
     IonBackButton,
     IonButtons,
+    IonSearchbar,
+  },
+  methods: {
+    onSearchChange(event) {
+      this.$store.commit('updateSearchKeyword', event.target.value);
+    },
   },
 };
 </script>

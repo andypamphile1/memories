@@ -3,27 +3,29 @@ import { createStore } from 'vuex';
 const store = createStore({
   state() {
     return {
+      handleButtonClick: '',
+      searchKeyword: '',
       memories: [
         {
           id: 'm1',
           image:
-            'https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Mighty_Mountains_with_Snow.jpg/640px-Mighty_Mountains_with_Snow.jpg',
-          title: 'A trip into the mountains',
-          description: 'It was a really nice trip!',
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Burundian_performers_with_drums.jpg/640px-Burundian_performers_with_drums.jpg',
+          title: 'Abatimbo',
+          description: 'Abatimbo are people that play drums in my Motherland. The Burundi.',
         },
         {
           id: 'm2',
           image:
-            'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/A_surfer_surfing_on_the_ocean_%28Unsplash%29.jpg/640px-A_surfer_surfing_on_the_ocean_%28Unsplash%29.jpg',
-          title: 'Surfing the sea side',
-          description: 'Feeling the cool breeze',
-        },
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Majestic_Impala.jpg/640px-Majestic_Impala.jpg',
+          title: 'Impala',
+          description: 'The impala is a medium-sized, slender-bodied antelope. That can be found in many other species, in the beautiful country of Uganda',
+        }, 
         {
           id: 'm3',
           image:
-            'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Indian_-_Food.jpg/640px-Indian_-_Food.jpg',
-          title: 'Good eating',
-          description: 'Really tasty!',
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Ring_of_Life_-_Fushun.jpg/1280px-Ring_of_Life_-_Fushun.jpg',
+          title: 'Ring of Life',
+          description: 'Ring of Life is in Shenyang, the capital and largest city of the northeast Liaoning Province of China',
         },
       ],
     };
@@ -38,13 +40,27 @@ const store = createStore({
       };
 
       state.memories.unshift(newMemory);
-    }
+    },
+    deleteMemory(state, memoryId) {
+      const index = state.memories.findIndex(memory => memory.id === memoryId);
+      if (index !== -1) {
+        state.memories.splice(index, 1);
+      }
+    }, 
+    
+  updateSearchKeyword(state, keyword) {
+    state.searchKeyword = keyword;
   },
+},
+  
   actions: {
     addMemory(context, memoryData) {
       context.commit('addMemory', memoryData);
-    }
-  },
+    },
+    deleteMemory(context, memoryId) {
+      context.commit('deleteMemory', memoryId);
+    },
+  }, 
   getters: {
     memories(state) {
       return state.memories;
@@ -58,3 +74,4 @@ const store = createStore({
 });
 
 export default store;
+
